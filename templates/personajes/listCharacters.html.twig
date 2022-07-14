@@ -1,0 +1,26 @@
+{% extends "personajes/baseCharacters.html.twig" %}
+
+{% block contenido %}
+	<h2>Listado de Characters</h2>
+	{% for message in app.flashes("exito") %}
+		<p>{{message}}</p>
+	{% endfor %}
+	<div class="row row-cols-1 row-cols-md-2">
+		{% for character in characters %}
+			<div class="col mb-4">
+				<div class="card" style="width: 18rem;">
+					<img src="{{character.image}}" class="card-img-top">
+					<div class="card-body">
+						<h5 class="card-title">{{character.name}}</h5>
+						<p class="card-text">{{character.description}}</p>
+						{% if is_granted("ROLE_USER")%}
+							<a href="{{path("showpersonajes", {"id":character.id})}}" class="btn btn-primary">Más Info</a>
+						{% endif %}
+						<a href="{{path("editcharacter", {"id":character.id})}}" class="btn btn-primary">Editar</a>
+						<a href="{{path("removecharacter", {"id":character.id})}}" class="btn btn-danger">Borrar</a>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+{% endblock %}

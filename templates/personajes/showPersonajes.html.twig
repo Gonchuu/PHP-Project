@@ -1,0 +1,32 @@
+{% extends "personajes/baseCharacters.html.twig" %}
+{% block contenido %}
+
+	<div class="container">
+		<div class="row">
+			<div class="col text-center">
+				<h2>
+					{{ personaje.name }}
+					Nº
+					{{ personaje.number }}
+				</h2>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<img src="{{ personaje.image }}">
+			</div>
+			<div class="col">
+				<div class="row">
+					<div class="col">{{ personaje.description }}</div>
+				</div>
+				<div class="row">
+					<ul>
+						{% for familia in personaje.familias %}
+							<li>{{ familia.name }}</li>
+						{% endfor %}
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
